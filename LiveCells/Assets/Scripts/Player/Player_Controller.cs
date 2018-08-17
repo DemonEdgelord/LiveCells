@@ -22,12 +22,17 @@ public class Player_Controller : MonoBehaviour {
     //Dashing
     public float dashSpeed;
     public float dashTime;
-    public float startDashTime;
+    public float setDashTime;
+    public bool dashReady = true;
+    public float dashCD;
+    public float setDashCD;
 
 
    void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        dashTime = setDashTime;
     }
 
 
@@ -62,6 +67,35 @@ public class Player_Controller : MonoBehaviour {
         else if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.W))
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;     //Variable Jump height
+        }
+
+        //Dashing
+        if (Input.GetKey(KeyCode.Space) && dashReady == true && moveInput != 0)
+        {
+            if (dashTime <= 0)
+            {
+                rb.velocity = new Vector2(0,0);
+                dashReady = false;
+                dashCD = setDashCD;
+                dashTime = setDashTime;
+
+            }
+            else
+            {
+                dashTime -= Time.deltaTime;
+                rb.velocity = new Vector2(rb.velocity.x * dashSpeed, 0);
+            }
+        }
+
+        //Dash Cool Down
+        if (dashCD > 0)
+        {
+
+            dashCD -= Time.deltaTime;
+            if (dashCD <= 0)
+            {
+                dashReady = true;
+            }
         }
 
     }

@@ -420,10 +420,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12c83fb407d0c8749b80bdfe423a5539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
   moveSpeed: 5
-  jumpForce: 9
   moveInput: 0
+  jumpForce: 9
   grounded: 0
   groundCheck: {fileID: 1140902952}
   checkRadius: 0.3
@@ -432,6 +431,12 @@ MonoBehaviour:
     m_Bits: 256
   fallmultiplier: 4
   lowJumpMultiplier: 2
+  dashSpeed: 15
+  dashTime: 0
+  setDashTime: 0.1
+  dashReady: 1
+  dashCD: 0
+  setDashCD: 1
 --- !u!1 &767145430
 GameObject:
   m_ObjectHideFlags: 0
