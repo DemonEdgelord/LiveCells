@@ -26,6 +26,8 @@ public class Player_Controller : MonoBehaviour {
     public bool dashReady = true;
     public float dashCD;
     public float setDashCD;
+    public bool dashing = false;
+    private float dashDirec;
 
 
    void Start()
@@ -39,6 +41,7 @@ public class Player_Controller : MonoBehaviour {
     void FixedUpdate()
     {
         //Horizontal Movement
+
         moveInput = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
 
@@ -70,20 +73,24 @@ public class Player_Controller : MonoBehaviour {
         }
 
         //Dashing
-        if (Input.GetKey(KeyCode.Space) && dashReady == true && moveInput != 0)
+        if (Input.GetKeyDown(KeyCode.Space) && dashReady == true && moveInput != 0 && dashing == false)
         {
+            dashing = true;
+            dashDirec = moveInput;
+        }
+        if (dashing == true)
+        {
+            dashTime -= Time.deltaTime;
+            rb.velocity = new Vector2(dashDirec * dashSpeed, 0);
+
             if (dashTime <= 0)
             {
-                rb.velocity = new Vector2(0,0);
+                rb.velocity = new Vector2(0, 0);
                 dashReady = false;
                 dashCD = setDashCD;
                 dashTime = setDashTime;
+                dashing = false;
 
-            }
-            else
-            {
-                dashTime -= Time.deltaTime;
-                rb.velocity = new Vector2(rb.velocity.x * dashSpeed, 0);
             }
         }
 
