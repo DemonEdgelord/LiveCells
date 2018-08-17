@@ -323,7 +323,7 @@ Rigidbody2D:
   m_Material: {fileID: 6200000, guid: 5692362fc84c25f4b807615befe6a39c, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &726285880
 BoxCollider2D:
@@ -431,9 +431,9 @@ MonoBehaviour:
     m_Bits: 256
   fallmultiplier: 4
   lowJumpMultiplier: 2
-  dashSpeed: 15
+  dashSpeed: 50
   dashTime: 0
-  setDashTime: 1
+  setDashTime: 0.1
   dashReady: 1
   dashCD: 0
   setDashCD: 1
