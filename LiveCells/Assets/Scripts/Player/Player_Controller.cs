@@ -4,31 +4,7 @@ using UnityEngine;
 
 public class Player_Controller : MonoBehaviour {
 
-    private Rigidbody2D rb;
-
-    //Horizontal Movement
-    public float moveSpeed;
-    public float moveInput;
-
-    //Jumping
-    public float jumpForce;
-    public bool grounded;
-    public Transform groundCheck;
-    public float checkRadius;
-    public LayerMask ground;
-    public float fallmultiplier;
-    public float lowJumpMultiplier;
-
-    //Dashing
-    public float dashSpeed;
-    public float dashTime;
-    public float setDashTime;
-    public bool dashReady = true;
-    public float dashCD;
-    public float setDashCD;
-    public bool dashing = false;
-    private float dashDirec;
-
+   private Rigidbody2D rb;
 
    void Start()
     {
@@ -40,8 +16,21 @@ public class Player_Controller : MonoBehaviour {
 
     void FixedUpdate()
     {
-        //Horizontal Movement
 
+        Walk();
+
+        Jump();
+        
+        Dash();
+
+    }
+
+    //Horizontal Movement
+    public float moveSpeed;
+    public float moveInput;
+
+    void Walk()
+    {
         moveInput = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
 
@@ -54,16 +43,38 @@ public class Player_Controller : MonoBehaviour {
         {
             Flip();
         }
+    }
 
-        //Jump
+    //Flips Sprite
+    private bool FacingRight = true;
+
+    void Flip()
+    {
+        FacingRight = !FacingRight;
+        Vector3 Scaler = transform.localScale;
+        Scaler.x *= -1;
+        transform.localScale = Scaler;
+    }
+
+    //Jumping
+    public float jumpForce;
+    public bool grounded;
+    public Transform groundCheck;
+    public float checkRadius;
+    public LayerMask ground;
+    public float fallmultiplier;
+    public float lowJumpMultiplier;
+
+    void Jump()
+    {
         grounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, ground); //Checks if player is grounded
 
-        if (Input.GetKeyDown(KeyCode.W) && grounded == true) 
+        if (Input.GetKeyDown(KeyCode.W) && grounded == true)
         {
             rb.velocity = Vector2.up * jumpForce;   //Makes player Jump
         }
 
-        if (rb.velocity.y < 0) 
+        if (rb.velocity.y < 0)
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (fallmultiplier - 1) * Time.deltaTime;    //Increases descent speed compared to ascend
         }
@@ -71,19 +82,38 @@ public class Player_Controller : MonoBehaviour {
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;     //Variable Jump height
         }
+    }
 
-        //Dashing
-        if (Input.GetKeyDown(KeyCode.Space) && dashReady == true && moveInput != 0 && dashing == false)
+    //Dashing
+    public float dashSpeed;
+    public float dashTime;
+    public float setDashTime;
+    public bool dashReady = true;
+    public float dashCD;
+    public float setDashCD;
+    public bool dashing = false;
+    private float dashDirec;
+
+    void Dash()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && dashReady == true && dashing == false)
         {
             dashing = true;
-            dashDirec = moveInput;
+            if (FacingRight == true)    //Checks player direction and choses dash direction aproprietly
+            {
+                dashDirec = 1;
+            } 
+            else if (FacingRight == false)
+            {
+                dashDirec = -1;
+            }
         }
         if (dashing == true)
         {
-            dashTime -= Time.deltaTime;
+            dashTime -= Time.deltaTime;     //Keeps track of dash lenth
             rb.velocity = new Vector2(dashDirec * dashSpeed, 0);
 
-            if (dashTime <= 0)
+            if (dashTime <= 0)      //Stops dash and puts it on cooldown
             {
                 rb.velocity = new Vector2(0, 0);
                 dashReady = false;
@@ -104,19 +134,9 @@ public class Player_Controller : MonoBehaviour {
                 dashReady = true;
             }
         }
-
     }
 
-    //Flips Sprite
-    private bool FacingRight = true;
-
-    void Flip()
-    {
-        FacingRight = !FacingRight;
-        Vector3 Scaler = transform.localScale;
-        Scaler.x *= -1;
-        transform.localScale = Scaler;
-    }
+    
   
     
 }
