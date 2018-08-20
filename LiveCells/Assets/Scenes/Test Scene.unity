@@ -445,15 +445,17 @@ MonoBehaviour:
   dashCD: 0
   setDashCD: 1
   dashing: 1
-  atkDmg: 0
-  hitBox: {fileID: 0}
+  atkDmg: 25
+  hitBox: {fileID: 726285884}
+  setAtkTimer: 0.3
+  atkTimer: 0
 --- !u!61 &726285884
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 726285878}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -916,6 +918,7 @@ GameObject:
   - component: {fileID: 1628616845}
   - component: {fileID: 1628616848}
   - component: {fileID: 1628616844}
+  - component: {fileID: 1628616849}
   m_Layer: 10
   m_Name: PunchingBox
   m_TagString: Untagged
@@ -1040,6 +1043,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 100
   curHp: 0
+--- !u!61 &1628616849
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1628616843}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3, y: 3}
+    newSize: {x: 3, y: 3}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3, y: 3}
+  m_EdgeRadius: 0
 --- !u!1 &1694551434
 GameObject:
   m_ObjectHideFlags: 0
