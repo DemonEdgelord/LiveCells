@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player_Controller : MonoBehaviour
 {
-
+    public float projectileVelocity;
     private Rigidbody2D rb;
 
     //needed variables for shooting
@@ -13,22 +13,24 @@ public class Player_Controller : MonoBehaviour
     public float Damage = 10;
     float TimeToFire = 0;
 
+
+
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+          projectileVelocity = 3;
+    rb = GetComponent<Rigidbody2D>();
 
         dashTime = setDashTime;
 
-    }
-
-    private void Awake()
-    {
         FirePoint = transform.Find("Fire_point");
         if (FirePoint == null)
         {
             Debug.LogError("NO FIRE POINT");
         }
-    }
+        
+}
+
+
 
     void FixedUpdate()
     {
@@ -54,6 +56,7 @@ public class Player_Controller : MonoBehaviour
                 Shoot();
             }
         }
+
     }
 
     //Horizontal Movement
@@ -168,6 +171,10 @@ public class Player_Controller : MonoBehaviour
     }
 
 
+    //projectile
+    private List<GameObject> Projectiles = new List<GameObject>();
+    
+    public GameObject projectilePrefab;
 
     //Shooting 
     public LayerMask WhatToHit;
@@ -175,15 +182,29 @@ public class Player_Controller : MonoBehaviour
     {
         Vector2 mousePostition = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
         Vector2 FirePointPosition = new Vector2(FirePoint.position.x, FirePoint.position.y);
-        RaycastHit2D hit = Physics2D.Raycast(FirePointPosition, mousePostition - FirePointPosition, 100, WhatToHit);
-        Debug.DrawLine(FirePointPosition, (mousePostition - FirePointPosition) * 100, Color.cyan);
-        if (hit.collider != null)
-        {
-            Debug.DrawLine(FirePointPosition, hit.point, Color.red);
-            Debug.Log("we hit" + hit.collider.name + " and did " + Damage + "Damage thats a lot of Damge");
+        GameObject bullet = (GameObject)Instantiate(projectilePrefab, transform.position, transform.rotation);
+        Projectiles.Add(bullet);
+
+        for(int i = 0; i < Projectiles.Count; i++) {
+            GameObject goBullet = Projectiles[i];
+            if(goBullet != null){
+                goBullet.transform.Translate(new Vector3(0, 1) * Time.deltaTime * projectileVelocity);
+
+                Vector3 bulletScreenPos = Camera.main.WorldToScreenPoint(goBullet.transform.position);
+                if (bulletScreenPos.y >=Screen.height || bulletScreenPos.y <= 0)
+                {
+                    Object.Destroy(goBullet);
+                    Projectiles.Remove(goBullet);
+                }
+
+            }
+
         }
 
 
 
     }
+
 }
+
+
