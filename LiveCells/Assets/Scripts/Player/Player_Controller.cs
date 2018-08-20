@@ -11,6 +11,7 @@ public class Player_Controller : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
 
         dashTime = setDashTime;
+
     }
 
 
@@ -22,6 +23,8 @@ public class Player_Controller : MonoBehaviour {
         Jump();
         
         Dash();
+
+        Attack();
 
     }
 
@@ -136,7 +139,43 @@ public class Player_Controller : MonoBehaviour {
         }
     }
 
-    
-  
-    
+    //Melee Attack
+
+    public float atkDmg;
+    private bool attacking = false;
+    public Collider2D hitBox;
+    public float setAtkTimer;
+    public float atkTimer;
+
+    void Attack()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0) && attacking == false)
+        {
+            attacking = true;
+            atkTimer = setAtkTimer;
+            hitBox.enabled = true;
+        }
+
+        if (attacking)
+        {
+            if (atkTimer > 0)
+            {
+                atkTimer -= Time.deltaTime;
+            }
+            else
+            {
+                attacking = false;
+                hitBox.enabled = false;
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        col.gameObject.GetComponent<DamageTest>().TakeDmg(atkDmg);
+    }
+
+
+
+
 }
