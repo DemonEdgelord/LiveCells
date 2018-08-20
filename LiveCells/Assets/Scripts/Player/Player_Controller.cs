@@ -34,18 +34,22 @@ public class Player_Controller : MonoBehaviour {
 
     void Walk()
     {
-        moveInput = Input.GetAxisRaw("Horizontal");
-        rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
+        if (attacking == false)
+        {
+            moveInput = Input.GetAxisRaw("Horizontal");
+            rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
 
-        //Checks if sprite needs to be fliped
-        if (FacingRight == false && moveInput > 0)
-        {
-            Flip();
+            //Checks if sprite needs to be fliped
+            if (FacingRight == false && moveInput > 0)
+            {
+                Flip();
+            }
+            else if (FacingRight == true && moveInput < 0)
+            {
+                Flip();
+            }
         }
-        else if (FacingRight == true && moveInput < 0)
-        {
-            Flip();
-        }
+
     }
 
     //Flips Sprite
@@ -154,6 +158,7 @@ public class Player_Controller : MonoBehaviour {
             attacking = true;
             atkTimer = setAtkTimer;
             hitBox.enabled = true;
+            
         }
 
         if (attacking)
@@ -172,8 +177,13 @@ public class Player_Controller : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        col.gameObject.GetComponent<DamageTest>().TakeDmg(atkDmg);
+        if (col.isTrigger == false && col.CompareTag("Enemy"))
+        {
+            col.gameObject.GetComponent<DamageTest>().TakeDmg(atkDmg);
+        }
+            
     }
+    
 
 
 
