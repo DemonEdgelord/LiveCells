@@ -66,7 +66,8 @@ public class Player_Controller : MonoBehaviour {
     //Jumping
     public float jumpForce;
     public bool grounded;
-    public Transform groundCheck;
+    public Transform groundCheck1;
+    public Transform groundCheck2;
     public float checkRadius;
     public LayerMask ground;
     public float fallmultiplier;
@@ -74,7 +75,7 @@ public class Player_Controller : MonoBehaviour {
 
     void Jump()
     {
-        grounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, ground); //Checks if player is grounded
+        grounded = Physics2D.OverlapCircle(groundCheck1.position, checkRadius, ground) || Physics2D.OverlapCircle(groundCheck2.position, checkRadius, ground); //Checks if player is grounded
 
         if (Input.GetKeyDown(KeyCode.W) && grounded == true)
         {
@@ -158,6 +159,7 @@ public class Player_Controller : MonoBehaviour {
             attacking = true;
             atkTimer = setAtkTimer;
             hitBox.enabled = true;
+            rb.velocity = new Vector2(0, 0);
             
         }
 
