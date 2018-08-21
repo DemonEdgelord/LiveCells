@@ -12,11 +12,15 @@ public class Movement_Controller : MonoBehaviour
 
     private RaycastHit2D rayHit;
     public Transform rayOrigin;
+    public float range;
+    public LayerMask rayIgnore;
 
     void FindPlayer()
     {
-        Physics2D.Raycast(rayOrigin.position, rayOrigin.forward, rayHit, 5);
-        Debug.DrawRay();
+        rayHit = Physics2D.Raycast(rayOrigin.position, rayOrigin.forward, range, rayIgnore);
+        Debug.DrawLine(rayOrigin.position, rayHit.point, Color.white);
+        Debug.Log(rayHit.collider.name);
     }
+
 
 }

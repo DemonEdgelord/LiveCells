@@ -309,8 +309,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 402617635}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 21.214302, y: -4.649562, z: 0.1420687}
-  m_LocalScale: {x: 1.1268581, y: 6.838419, z: 1}
+  m_LocalPosition: {x: 21.214302, y: -3.33, z: 0.1420687}
+  m_LocalScale: {x: 1.1268581, y: 10.428589, z: 1}
   m_Children: []
   m_Father: {fileID: 1021174175}
   m_RootOrder: 12
@@ -401,7 +401,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 64.61, y: 13.27, z: -10}
+  m_LocalPosition: {x: 89.72, y: -1.67, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -644,7 +644,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 47c03857cad22f944afa43c1e3d1a7e7, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 0
@@ -728,7 +728,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 726285878}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 64.1, y: 11.4, z: 0}
+  m_LocalPosition: {x: 96.26, y: 1.15, z: 0}
   m_LocalScale: {x: 0.6865118, y: 0.6865118, z: 0.6865118}
   m_Children:
   - {fileID: 1140902952}
@@ -921,7 +921,7 @@ GameObject:
   - component: {fileID: 803184531}
   - component: {fileID: 803184530}
   - component: {fileID: 803184529}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Golem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -983,7 +983,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 96.24, y: -3.55, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
-  m_Children: []
+  m_Children:
+  - {fileID: 1034551219}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -999,6 +1000,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerLocation: {fileID: 726285882}
+  rayOrigin: {fileID: 1034551219}
+  range: 500
+  rayIgnore:
+    serializedVersion: 2
+    m_Bits: 768
 --- !u!61 &803184530
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1035,15 +1041,15 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 100
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_SleepingMode: 0
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!1 &1021174174
 GameObject:
   m_ObjectHideFlags: 0
@@ -1086,6 +1092,34 @@ Transform:
   - {fileID: 1216003210}
   m_Father: {fileID: 0}
   m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1034551218
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1034551219}
+  m_Layer: 10
+  m_Name: Ray Origin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1034551219
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1034551218}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.55, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 803184528}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1063801021
 GameObject:
