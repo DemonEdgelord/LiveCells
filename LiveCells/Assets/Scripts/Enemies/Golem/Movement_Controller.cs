@@ -12,11 +12,10 @@ public class Movement_Controller : MonoBehaviour
 
     private RaycastHit2D rayHit;
     public Transform rayOrigin;
-    public float range;
 
     void FindPlayer()
     {
-        rayHit = Physics2D.Raycast(rayOrigin.position, rayOrigin.forward, range);
+        Physics2D.Raycast(rayOrigin.position, rayOrigin.forward, rayHit, 5);
         Debug.DrawRay();
     }
 
