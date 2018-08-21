@@ -411,6 +411,7 @@ Transform:
   m_LocalPosition: {x: 0.67000103, y: -3.65, z: 0}
   m_LocalScale: {x: 0.6865118, y: 0.6865118, z: 0.6865118}
   m_Children:
+  - {fileID: 1138192532}
   - {fileID: 1140902952}
   - {fileID: 2106458929}
   m_Father: {fileID: 0}
@@ -427,6 +428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12c83fb407d0c8749b80bdfe423a5539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FirePoint: {fileID: 1138192532}
   fireRate: 0
   Damage: 10
   moveSpeed: 5
@@ -572,11 +574,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1138192531}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.044, y: -0.07, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.8640001, y: 0.22999999, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2106458929}
+  m_Father: {fileID: 726285882}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1140902951
@@ -605,7 +607,7 @@ Transform:
   m_LocalScale: {x: 1.4566392, y: 1.4566392, z: 1.4566392}
   m_Children: []
   m_Father: {fileID: 726285882}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1143389674
 GameObject:
@@ -1139,10 +1141,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.82, y: 0.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1138192532}
+  m_Children: []
   m_Father: {fileID: 726285882}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2106458930
 MonoBehaviour:
@@ -1155,10 +1156,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f44b7a253bc785643b0c90fab75c5fd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 0
-  Damage: 10
-  WhatToHit:
-    m_Bits: 307
 --- !u!212 &2106458931
 SpriteRenderer:
   m_ObjectHideFlags: 0

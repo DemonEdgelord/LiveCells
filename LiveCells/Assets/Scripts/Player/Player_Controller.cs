@@ -8,7 +8,7 @@ public class Player_Controller : MonoBehaviour
     private Rigidbody2D rb;
 
     //needed variables for shooting
-    Transform FirePoint; //to make bulltes come out of orb
+    public Transform FirePoint; //to make bulltes come out of orb
     public float fireRate = 0;
     public float Damage = 10;
     float TimeToFire = 0;
@@ -21,14 +21,7 @@ public class Player_Controller : MonoBehaviour
 
     }
 
-    private void Awake()
-    {
-        FirePoint = transform.Find("Fire_point");
-        if (FirePoint == null)
-        {
-            Debug.LogError("NO FIRE POINT");
-        }
-    }
+
 
     void FixedUpdate()
     {
