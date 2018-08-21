@@ -20,7 +20,7 @@ public class DamageTest : MonoBehaviour {
         }
     }
 
-    public void TakeDmg(float dmg)
+    public void TakeDmg(float dmg)  //This function is called by the player when doing damage
     {
         curHp -= dmg;
     }

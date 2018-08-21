@@ -158,8 +158,11 @@ public class Player_Controller : MonoBehaviour {
         {
             attacking = true;
             atkTimer = setAtkTimer;
-            hitBox.enabled = true;
-            rb.velocity = new Vector2(0, 0);
+            hitBox.enabled = true;  //Enables the hitbox
+            if (grounded)  //Stops player movement while attacking unless already moving horizontally mid air
+            {
+                rb.velocity = new Vector2(0, 0);
+            }
             
         }
 
@@ -167,7 +170,7 @@ public class Player_Controller : MonoBehaviour {
         {
             if (atkTimer > 0)
             {
-                atkTimer -= Time.deltaTime;
+                atkTimer -= Time.deltaTime;  //The duration of tehr attack or active time of the hitbox
             }
             else
             {
@@ -177,11 +180,12 @@ public class Player_Controller : MonoBehaviour {
         }
     }
 
+    //Deals damage to the enemy
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.isTrigger == false && col.CompareTag("Enemy"))
+        if (col.isTrigger == false && col.CompareTag("Enemy"))  //Calls damage function if the colision is with the enemy
         {
-            col.gameObject.GetComponent<DamageTest>().TakeDmg(atkDmg);
+            col.gameObject.GetComponent<DamageTest>().TakeDmg(atkDmg);  //Calls teh TakeDmg() script component from whatever it colides with and sends the damage amoun
         }
             
     }
