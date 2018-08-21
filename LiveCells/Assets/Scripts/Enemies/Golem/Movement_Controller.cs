@@ -19,7 +19,10 @@ public class Movement_Controller : MonoBehaviour
     {
         rayHit = Physics2D.Raycast(rayOrigin.position, rayOrigin.forward, range, rayIgnore);
         Debug.DrawLine(rayOrigin.position, rayHit.point, Color.white);
-        Debug.Log(rayHit.collider.name);
+        if (rayHit.collider != null)
+        {
+            Debug.Log(rayHit.collider.name);
+        }
     }
 
 
