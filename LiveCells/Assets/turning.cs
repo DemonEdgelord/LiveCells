@@ -6,7 +6,7 @@ public class turning : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.CompareTag("turnopoint"))
+        if (col.CompareTag("Turningpoint"))
         {
             col.GetComponent<controllergoomba>().turn();
         }
