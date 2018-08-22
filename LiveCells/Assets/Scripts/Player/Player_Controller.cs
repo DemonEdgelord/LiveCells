@@ -12,6 +12,8 @@ public class Player_Controller : MonoBehaviour {
 
         dashTime = setDashTime;
 
+
+
     }
 
 
