@@ -15,4 +15,5 @@ public class GoombaController : MonoBehaviour {
     {
         rb.velocity = new Vector2(5, 0);
     }
+   
 }
