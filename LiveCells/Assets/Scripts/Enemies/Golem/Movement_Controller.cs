@@ -17,11 +17,12 @@ public class Movement_Controller : MonoBehaviour
 
     void FindPlayer()
     {
-        rayHit = Physics2D.Raycast(rayOrigin.position, rayOrigin.forward, range, rayIgnore);
-        Debug.DrawLine(rayOrigin.position, rayHit.point, Color.white);
+        rayHit = Physics2D.Raycast(rayOrigin.position, Vector2.right, range, rayIgnore);
+        Debug.DrawLine(rayOrigin.position, Vector2.right*range, Color.white);
         if (rayHit.collider != null)
         {
-            Debug.Log(rayHit.collider.name);
+            Debug.DrawLine(rayOrigin.position, rayHit.collider.transform.position, Color.green);
+            Debug.Log(rayHit.transform.name);
         }
     }
 
